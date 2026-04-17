@@ -6,7 +6,7 @@ A modern, full-featured e-commerce web application built with React, powered by 
 
 ## 🚀 Live Demo
 
-
+https://website-e-commerce-react.netlify.app/
 
 ---
 
