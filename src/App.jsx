@@ -17,7 +17,7 @@ const ClerkEventListener = () => {
     if (isSignedIn && wasSignedIn !== "true") {
       // Just logged in
       const name = user?.fullName || user?.firstName || "User";
-      toast.success(`Welcome back, ${name}!`);
+      toast.success(`Welcome, ${name}!`);
       sessionStorage.setItem("wasSignedIn", "true");
     }
 
