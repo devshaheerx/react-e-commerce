@@ -40,32 +40,52 @@ A modern, fully responsive e-commerce web application built with React, powered 
 ---
 
 ## 📁 Project Structure
-
 src/
 ├── components/
-│   ├── Card.jsx          # Product card with quantity +/− controls
-│   ├── Navbar.jsx        # Sticky navbar with global search & mobile menu
-│   ├── Footer.jsx        # Footer
-│   └── Tab.jsx           # Horizontally scrollable category tab filter
+│   ├── Card.jsx
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   └── Tab.jsx
 ├── context/
-│   └── Context.jsx       # Global state — products, cart (with quantity), filters, search
+│   └── Context.jsx
 ├── pages/
-│   ├── Home.jsx          # Home page with 2-col mobile grid & search results
-│   ├── Collections.jsx   # Products grouped by category
-│   ├── Detail.jsx        # Single product detail with in-page cart controls
-│   ├── Cart.jsx          # Cart page with order summary sidebar
-│   ├── About.jsx         # About page
-│   ├── Contact.jsx       # Contact form
-│   ├── Login.jsx         # Clerk login page
-│   ├── Layout.jsx        # Shared layout (Navbar + Footer + overflow guard)
-│   └── PageNotFound.jsx  # 404 page
+│   ├── Home.jsx
+│   ├── Collections.jsx
+│   ├── Detail.jsx
+│   ├── Cart.jsx
+│   ├── About.jsx
+│   ├── Contact.jsx
+│   ├── Login.jsx
+│   ├── Layout.jsx
+│   └── PageNotFound.jsx
 ├── router/
-│   └── Router.jsx        # All app routes
-├── App.jsx               # Root component + Clerk auth event listener
-├── main.jsx              # App entry point + ScrollToTop component
-└── index.css             # Global styles + scrollbar-hide utility
+│   └── Router.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
 
----
+### File Descriptions
+
+| File | Description |
+|---|---|
+| `Card.jsx` | Product card with quantity +/− controls |
+| `Navbar.jsx` | Sticky navbar with global search & mobile menu |
+| `Footer.jsx` | Footer |
+| `Tab.jsx` | Horizontally scrollable category tab filter |
+| `Context.jsx` | Global state — products, cart, filters, search |
+| `Home.jsx` | Home page with 2-col mobile grid & search results |
+| `Collections.jsx` | Products grouped by category |
+| `Detail.jsx` | Single product detail with in-page cart controls |
+| `Cart.jsx` | Cart page with order summary sidebar |
+| `About.jsx` | About page |
+| `Contact.jsx` | Contact form |
+| `Login.jsx` | Clerk login page |
+| `Layout.jsx` | Shared layout — Navbar, Footer, overflow guard |
+| `PageNotFound.jsx` | 404 page |
+| `Router.jsx` | All app routes |
+| `App.jsx` | Root component + Clerk auth event listener |
+| `main.jsx` | App entry point + ScrollToTop component |
+| `index.css` | Global styles + scrollbar-hide utility |
 
 ## ⚙️ Getting Started
 
