@@ -40,29 +40,34 @@ A modern, fully responsive e-commerce web application built with React, powered 
 ---
 
 ## 📁 Project Structure
+```
 src/
 ├── components/
-│   ├── Card.jsx
-│   ├── Navbar.jsx
-│   ├── Footer.jsx
-│   └── Tab.jsx
+│   ├── Card.jsx         # Product card component
+│   ├── Navbar.jsx       # Top navigation bar
+│   ├── Footer.jsx       # Footer
+│   └── Tab.jsx          # Category tab filter
 ├── context/
-│   └── Context.jsx
+│   └── Context.jsx      # Global state (products, cart, filters)
 ├── pages/
-│   ├── Home.jsx
-│   ├── Collections.jsx
-│   ├── Detail.jsx
-│   ├── Cart.jsx
-│   ├── About.jsx
-│   ├── Contact.jsx
-│   ├── Login.jsx
-│   ├── Layout.jsx
-│   └── PageNotFound.jsx
+│   ├── Home.jsx         # Home page with filtered products
+│   ├── Collections.jsx  # Products by category
+│   ├── Detail.jsx       # Single product detail
+│   ├── Cart.jsx         # Shopping cart
+│   ├── About.jsx        # About page
+│   ├── Contact.jsx      # Contact form
+│   ├── Login.jsx        # Clerk login page
+│   ├── Layout.jsx       # Shared layout (Navbar + Footer)
+│   └── PageNotFound.jsx # 404 page
 ├── router/
-│   └── Router.jsx
-├── App.jsx
-├── main.jsx
-└── index.css
+│   └── Router.jsx       # All app routes
+├── App.jsx              # Root component + auth listener
+├── main.jsx             # App entry point
+└── index.css            # Global styles
+```
+
+---
+
 
 ### File Descriptions
 
