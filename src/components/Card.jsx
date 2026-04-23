@@ -8,7 +8,6 @@ const Card = ({ item, isCart }) => {
   let { cartProduct, setCartProduct } = useFetch();
   const navigate = useNavigate();
 
-  // How many of this item are in the cart
   const cartEntry = cartProduct.find((p) => p.id === item.id);
   const qty = cartEntry?.quantity ?? 0;
 
@@ -39,13 +38,14 @@ const Card = ({ item, isCart }) => {
   }
 
   return (
-    <div className="border border-gray-200 rounded-xl px-3 py-3 bg-white w-full sm:w-52 md:w-56 lg:w-60 hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-md">
+    // FIXED: w-full on xs, then fixed widths on larger screens
+    <div className="border border-gray-200 rounded-xl px-3 py-3 bg-white w-full xs:w-44 sm:w-52 md:w-56 lg:w-60 hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-md">
       <div
         onClick={() => navigate(`/detail/${item.id}`)}
         className="group cursor-pointer flex items-center justify-center px-2"
       >
         <img
-          className="group-hover:scale-105 transition-all duration-300 w-32 h-36 sm:w-36 sm:h-40 object-contain"
+          className="group-hover:scale-105 transition-all duration-300 w-28 h-32 sm:w-36 sm:h-40 object-contain"
           src={thumbnail}
           alt={title}
         />
@@ -53,7 +53,7 @@ const Card = ({ item, isCart }) => {
 
       <div className="text-gray-500/60 text-sm mt-2">
         <p className="text-xs capitalize">{category}</p>
-        <p className="text-gray-700 font-medium text-base truncate w-full">
+        <p className="text-gray-700 font-medium text-sm sm:text-base truncate w-full">
           {title}
         </p>
 
@@ -64,8 +64,8 @@ const Card = ({ item, isCart }) => {
               Math.round(rating) > i ? (
                 <svg
                   key={i}
-                  width="13"
-                  height="12"
+                  width="12"
+                  height="11"
                   viewBox="0 0 18 17"
                   fill="none"
                 >
@@ -77,8 +77,8 @@ const Card = ({ item, isCart }) => {
               ) : (
                 <svg
                   key={i}
-                  width="13"
-                  height="12"
+                  width="12"
+                  height="11"
                   viewBox="0 0 18 17"
                   fill="none"
                 >
@@ -93,39 +93,38 @@ const Card = ({ item, isCart }) => {
           <p className="text-xs ml-1">{Math.round(rating)}</p>
         </div>
 
-        <div className="flex items-end justify-between mt-3">
-          <p className="text-base font-medium text-purple-500">
+        <div className="flex items-end justify-between mt-3 gap-2">
+          <p className="text-sm sm:text-base font-medium text-purple-500 shrink-0">
             ${price}{" "}
             <span className="text-gray-400 text-xs line-through">
               ${Math.round(price + price * 0.1)}
             </span>
           </p>
 
-          {/* Cart controls — shown when item is in cart OR in cart page */}
           {qty > 0 || isCart ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={removeCartHandler}
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100 border border-red-300 text-red-500 hover:bg-red-200 transition cursor-pointer"
+                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-100 border border-red-300 text-red-500 hover:bg-red-200 transition cursor-pointer"
               >
-                {qty === 1 ? <Trash2 size={14} /> : <Minus size={14} />}
+                {qty === 1 ? <Trash2 size={13} /> : <Minus size={13} />}
               </button>
-              <span className="text-sm font-semibold text-gray-700 min-w-4 text-center">
+              <span className="text-sm font-semibold text-gray-700 min-w-[16px] text-center">
                 {qty}
               </span>
               <button
                 onClick={addCartHandler}
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 border border-purple-300 text-purple-600 hover:bg-purple-200 transition cursor-pointer"
+                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-100 border border-purple-300 text-purple-600 hover:bg-purple-200 transition cursor-pointer"
               >
-                <Plus size={16} />
+                <Plus size={14} />
               </button>
             </div>
           ) : (
             <button
               onClick={addCartHandler}
-              className="flex items-center justify-center gap-1 cursor-pointer bg-purple-100 border border-purple-300 px-3 h-8 rounded-lg text-purple-600 text-sm font-medium hover:shadow-md hover:bg-purple-200 transition"
+              className="flex items-center justify-center gap-1 cursor-pointer bg-purple-100 border border-purple-300 px-2 sm:px-3 h-7 sm:h-8 rounded-lg text-purple-600 text-xs sm:text-sm font-medium hover:shadow-md hover:bg-purple-200 transition shrink-0"
             >
-              <ShoppingCart size={15} />
+              <ShoppingCart size={13} />
               <p>Add</p>
             </button>
           )}

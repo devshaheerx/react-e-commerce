@@ -4,10 +4,11 @@ export default function Tab() {
   let { category, selectTab, setSelectTab } = useFetch();
 
   return (
-    <div className="flex gap-2 justify-start sm:justify-center my-4 mx-3 p-1 flex-wrap overflow-x-auto">
+    // FIXED: horizontal scroll on mobile so tabs never wrap messily
+    <div className="flex gap-2 my-4 mx-3 sm:mx-4 p-1 overflow-x-auto scrollbar-hide sm:flex-wrap sm:justify-center">
       <button
         onClick={() => setSelectTab("All")}
-        className={`px-4 py-1.5 text-sm border rounded-full capitalize transition-all duration-200 whitespace-nowrap
+        className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm border rounded-full capitalize transition-all duration-200 whitespace-nowrap shrink-0
           ${
             selectTab === "All"
               ? "text-white font-bold border-purple-400 bg-purple-500 shadow-md"
@@ -20,7 +21,7 @@ export default function Tab() {
         <button
           key={index}
           onClick={() => setSelectTab(item)}
-          className={`px-4 py-1.5 text-sm border rounded-full capitalize transition-all duration-200 whitespace-nowrap
+          className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm border rounded-full capitalize transition-all duration-200 whitespace-nowrap shrink-0
             ${
               selectTab === item
                 ? "text-white font-bold border-purple-400 bg-purple-500 shadow-md"

@@ -8,26 +8,27 @@ const Collections = () => {
 
   if (loader)
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-[60vh] flex items-center justify-center">
         <Loader2 className="animate-spin text-purple-500" size={35} />
       </div>
     );
 
   if (error)
     return (
-      <h1 className="h-screen flex items-center justify-center text-2xl font-bold text-red-400 px-4 text-center">
+      <h1 className="h-[60vh] flex items-center justify-center text-xl sm:text-2xl font-bold text-red-400 px-4 text-center">
         {error}
       </h1>
     );
 
   return (
-    <div className="px-4 sm:px-6 lg:px-10 mt-6 pb-10">
+    <div className="px-3 sm:px-6 lg:px-10 mt-5 sm:mt-6 pb-10">
       {category.map((cat, catindex) => (
-        <div key={catindex} className="mb-10">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl uppercase text-purple-500 font-bold mb-4">
+        <div key={catindex} className="mb-8 sm:mb-10">
+          <h1 className="text-xl sm:text-3xl lg:text-4xl uppercase text-purple-500 font-bold mb-3 sm:mb-4">
             {cat}
           </h1>
-          <div className="flex flex-wrap gap-3 sm:gap-4">
+          {/* FIXED: 2-col grid on phones, flex-wrap on tablets+ */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4">
             {product
               .filter((item) => item.category === cat)
               .map((value, productindex) => (

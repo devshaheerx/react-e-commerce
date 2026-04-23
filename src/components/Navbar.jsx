@@ -17,19 +17,24 @@ const Navbar = () => {
     { to: "/contact", name: "Contact" },
   ];
 
+  const totalQty = cartProduct.reduce(
+    (sum, item) => sum + (item.quantity ?? 1),
+    0,
+  );
+
   return (
     <>
-      <div className="h-16 w-full border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 lg:px-10 shadow-sm sticky top-0 z-50 bg-white">
+      <div className="h-14 sm:h-16 w-full border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 lg:px-10 shadow-sm sticky top-0 z-50 bg-white">
         {/* logo */}
         <div
-          className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-purple-500 cursor-pointer"
+          className="flex items-center gap-1.5 sm:gap-2 text-lg sm:text-2xl font-bold text-purple-500 cursor-pointer shrink-0"
           onClick={() => navigate("/")}
         >
-          <Zap size={28} />
+          <Zap size={24} className="sm:w-7 sm:h-7" />
           <p className="font-semibold">Brand Shop</p>
         </div>
 
-        {/* nav items - hidden on mobile */}
+        {/* nav items — hidden on mobile */}
         <div className="hidden md:flex gap-4 lg:gap-6 text-sm lg:text-base">
           {nav_items.map((items, index) => (
             <NavLink
@@ -46,9 +51,9 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* search - hidden on mobile and small tablets */}
+        {/* search — desktop only */}
         <div className="border rounded-full px-3 hidden lg:flex items-center text-sm gap-2 w-48 xl:w-64">
-          <Search size={18} />
+          <Search size={16} />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -58,41 +63,41 @@ const Navbar = () => {
           />
         </div>
 
-        {/* right side icons */}
-        <div className="flex items-center gap-4">
+        {/* right side */}
+        <div className="flex items-center gap-3 sm:gap-4">
           {/* cart */}
           <div
             className="relative cursor-pointer"
             onClick={() => navigate("/cart")}
           >
-            <p className="absolute -top-2 -right-2 text-xs text-white font-bold bg-purple-500 w-4 h-4 rounded-full flex items-center justify-center">
-              {cartProduct.length}
-            </p>
-            <ShoppingCart size={22} />
+            <span className="absolute -top-2 -right-2 text-xs text-white font-bold bg-purple-500 w-4 h-4 rounded-full flex items-center justify-center leading-none">
+              {totalQty}
+            </span>
+            <ShoppingCart size={20} className="sm:w-[22px] sm:h-[22px]" />
           </div>
 
-          {/* user - hidden on mobile */}
+          {/* user — hidden on mobile */}
           <div className="hidden md:flex items-center gap-2">
             <UserButton />
-            <span className="text-sm font-medium text-purple-500 truncate max-w-24">
+            <span className="text-sm font-medium text-purple-500 truncate max-w-[80px] lg:max-w-[120px]">
               {user?.fullName || user?.firstName || "User"}
             </span>
           </div>
 
-          {/* hamburger - mobile only */}
+          {/* hamburger — mobile only */}
           <button
             onClick={() => setOpen(!open)}
             aria-label="Menu"
-            className="md:hidden text-purple-500"
+            className="md:hidden text-purple-500 p-1"
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* mobile dropdown */}
       {open && (
-        <div className="md:hidden fixed top-16 left-0 w-full bg-white border-b border-gray-200 shadow-lg z-40 flex flex-col px-6 py-4 gap-4">
+        <div className="md:hidden fixed top-14 sm:top-16 left-0 w-full bg-white border-b border-gray-200 shadow-lg z-40 flex flex-col px-5 py-4 gap-4">
           {nav_items.map((item, index) => (
             <NavLink
               key={index}
@@ -110,7 +115,7 @@ const Navbar = () => {
 
           {/* mobile search */}
           <div className="border rounded-full px-3 flex items-center text-sm gap-2">
-            <Search size={16} />
+            <Search size={15} />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -121,7 +126,7 @@ const Navbar = () => {
           </div>
 
           {/* mobile user */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 pb-1">
             <UserButton />
             <span className="text-sm font-medium text-purple-500 truncate">
               {user?.fullName || user?.firstName || "User"}
