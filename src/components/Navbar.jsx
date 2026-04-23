@@ -30,6 +30,7 @@ const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/");
     }
+    window.scrollTo(0, 0);
   }
 
   // NEW: clear search when user manually closes it or navigates away
