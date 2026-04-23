@@ -1,4 +1,4 @@
-import { Plus, ShoppingCart, Trash2 } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import React from "react";
 import { useFetch } from "../context/Context";
 import { useNavigate } from "react-router-dom";
@@ -8,15 +8,34 @@ const Card = ({ item, isCart }) => {
   let { cartProduct, setCartProduct } = useFetch();
   const navigate = useNavigate();
 
+  // How many of this item are in the cart
+  const cartEntry = cartProduct.find((p) => p.id === item.id);
+  const qty = cartEntry?.quantity ?? 0;
+
   function addCartHandler() {
-    setCartProduct([...cartProduct, item]);
+    const exists = cartProduct.find((p) => p.id === item.id);
+    if (exists) {
+      setCartProduct(
+        cartProduct.map((p) =>
+          p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p,
+        ),
+      );
+    } else {
+      setCartProduct([...cartProduct, { ...item, quantity: 1 }]);
+    }
   }
 
   function removeCartHandler() {
-    const index = cartProduct.findIndex((p) => p.id === item.id);
-    const updatedCart = [...cartProduct];
-    updatedCart.splice(index, 1);
-    setCartProduct(updatedCart);
+    const exists = cartProduct.find((p) => p.id === item.id);
+    if (exists?.quantity === 1) {
+      setCartProduct(cartProduct.filter((p) => p.id !== item.id));
+    } else {
+      setCartProduct(
+        cartProduct.map((p) =>
+          p.id === item.id ? { ...p, quantity: p.quantity - 1 } : p,
+        ),
+      );
+    }
   }
 
   return (
@@ -82,19 +101,23 @@ const Card = ({ item, isCart }) => {
             </span>
           </p>
 
-          {isCart ? (
+          {/* Cart controls — shown when item is in cart OR in cart page */}
+          {qty > 0 || isCart ? (
             <div className="flex items-center gap-2">
               <button
                 onClick={removeCartHandler}
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-red-100 border border-red-300 text-red-500 hover:bg-red-200 transition cursor-pointer"
               >
-                <Trash2 size={15} />
+                {qty === 1 ? <Trash2 size={14} /> : <Minus size={14} />}
               </button>
+              <span className="text-sm font-semibold text-gray-700 min-w-4 text-center">
+                {qty}
+              </span>
               <button
                 onClick={addCartHandler}
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 border border-purple-300 text-purple-600 hover:bg-purple-200 transition cursor-pointer"
               >
-                <Plus size={18} />
+                <Plus size={16} />
               </button>
             </div>
           ) : (
